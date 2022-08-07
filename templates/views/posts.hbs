@@ -1,0 +1,19 @@
+{{> header}}
+<div class="container">
+    <div class="row mt-4 max_width_1000">
+        <h2 class="mb-4 ms-2">Posts</h2>
+            {{#each posts}}
+                <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex justify-content-center">
+                    <div class="card h-100" style="width: 18rem;">
+                        <img src="placeholder.png" class="card-img-top" alt="#">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.title}}e</h5>
+                            <p class="card-text">{{this.body}}</p>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+{{> footer}}

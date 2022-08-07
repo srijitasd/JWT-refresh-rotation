@@ -1,0 +1,31 @@
+{
+  "name": "jwt_authentication",
+  "version": "1.0.0",
+  "description": "JWT authenticaton with access and refresh token",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js"
+  },
+  "nodemonConfig": {
+    "ext": "js,json,hbs,html"
+  },
+  "keywords": [
+    "JTW",
+    "NodeJs"
+  ],
+  "author": "Srijit Das",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "env-cmd": "^10.1.0",
+    "express": "^4.18.1",
+    "hbs": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.8.1",
+    "mongoose": "^6.5.0",
+    "uuid": "^8.3.2",
+    "validator": "^13.7.0"
+  }
+}
