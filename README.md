@@ -8,7 +8,7 @@ When a user signup or login into the system the authentication handler generate 
 Access token has maxAge of only `5 minutes`. If a user requests using an expired access token, the authentication server uses the refresh token to generate a new pair of access and refresh token and gives access to the requested route.
 <br/> <br/>
 
-![JWT authentication journey](/public/images/jwt_auth_flow.jpg)
+![JWT authentication journey](https://drive.google.com/file/d/1MYPcSyzXPJy6i8xwvrinxka5eQGsfiSE/view?usp=sharing)
 
 ## Why another refresh token demonstration ?
 
@@ -26,3 +26,5 @@ Moreover, JWT allows us to carry on autentication without storing information on
 ### Defeating hackers :imp:
 
 how it stops hacker - how to devalidate refresh token - logout - logout all
+
+## How to Use the Project?
