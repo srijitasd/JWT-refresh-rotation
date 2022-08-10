@@ -7,6 +7,10 @@ const User = require("../models/userModel");
 const Post = require("../models/postModel");
 const setCookie = require("../misc/functions");
 
+Router.get("/", (req, res) => {
+  res.render("index");
+});
+
 Router.get("/signin", (req, res) => {
   res.render("signin");
 });

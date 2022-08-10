@@ -1,19 +1,113 @@
 {{> header}}
-<div class="container">
+<div class="container mt-5">
     <div class="row">
-        <div class="col-4 mx-auto p-4 form_container">
-            <h2 class="mb-3">Login</h2>
-            <form action="/login" method="POST">
-                <div class="mb-3">
-                    <label for="usr_email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="usr_email" name="usr_email">
-                </div>
-                <div class="mb-3">
-                    <label for="usr_pwd" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="usr_pwd" name="usr_pwd">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+        <div class="col-9 mx-auto p-4 mt-4">
+            <h1 class="mb-3">JWT seamless authentication with refresh token rotation</h1>
+            <hr>
+            <p>JWT seamless authentication system demonstration using access token and
+                <code>refresh token rotation</code> strategy. <br />
+                This demonstration uses refresh token to re-authenticate user without asking for login details again and
+                again. <br />
+                It improves UX and refreshing authentication token makes the system more <strong>secure</strong>.
+            </p>
+            <p>When a user signup or login into the system the authentication handler generate two token and stores them
+                in <strong>HTTPOnly Cookie</strong> storage for secure access. User requests protected routes and the
+                authentication server authenticates the user and provide access to thr requested route. <br />
+                Access token has maxAge of only <code>5 minutes</code>. If a user requests using an expired access
+                token, the authentication server uses the refresh token to generate a new pair of access and refresh
+                token and gives access to the requested route.
+                <br /> <br />
+            </p>
+
+            <p class="mb-3"><img src="./images/jwt_auth_flow.jpg" class="img-fluid" alt="JWT authentication journey">
+            </p>
+
+            <h2 class="mb-3 mt-5">Why another refresh token demonstration ?</h2>
+            <p>JWT authentication with refresh token rotation is not a new thing in the market, even there are ample
+                resources to guide you through the setup, but every other demonstration is either without database
+                inntegration or they do not show how to consume the tokens in the front-end. <br />
+                Some demonstrations does not use rotation strategy at all!</p>
+            <p>some do not show the usage of refresh token - some do use refresh token but not refresh token rotation -
+                some</p>
+            <h2 class="mb-3 mt-5">Why JWT?</h2>
+            <p>According to <a href="https://auth0.com/docs/secure/tokens/json-web-tokens">auth0.com</a>, WTs are a good
+                way of securely transmitting information between parties because they can be signed, which means you can
+                be sure that the senders are who they say they are. Additionally, the structure of a JWT allows you to
+                verify that the content hasn&#39;t been tampered with. <br />
+                Moreover, JWT allows us to carry on autentication without storing information on the server or in
+                database.</p>
+            <h2 class="mb-3 mt-5">Introducing refresh token</h2>
+            <p>The refresh token is used to generate a new access token. Typically, if the access token has an
+                expiration date, once it expires, the user would have to authenticate again to obtain an access token.
+                With refresh token, this step can be skipped and with a request to the API get a new access token that
+                allows the user to continue accessing the application resources.
+                <br />
+                The refresh token requires greater security when it is stored than the access token, as if it were
+                stolen by third parties, they could use it to obtain access tokens and access the protected resources of
+                the application. In order to cut a scenario like this one, a system must be implemented in the server to
+                invalidate a refresh token, besides setting a lifetime that obviously must be longer than that of the
+                access tokens.
+            </p>
+            <h2 class="mb-3 mt-5">Just refresh token is not enough - Refresh token rotation</h2>
+            <p>According to <a href="https://auth0.com/docs/secure/tokens/json-web-tokens">auth0.com</a>, refresh token
+                rotation is a technique for getting new access tokens using refresh tokens that goes beyond silent
+                authentication. Refresh tokens are typically longer-lived and can be used to request new access tokens
+                after the shorter-lived access tokens expire. Refresh tokens are often used in native applications on
+                mobile devices in conjunction with short-lived access tokens to provide seamless UX without having to
+                issue long-lived access tokens.
+                <br />
+                With refresh token rotation, every time an application exchanges a refresh token to get a new access
+                token, a new refresh token is also returned. Therefore, you no longer have a long-lived refresh token
+                that, if compromised, could provide illegitimate access to resources. As refresh tokens are continually
+                exchanged and invalidated, the threat is reduced.
+            </p>
+            <h2 class="mt-5 mb-3">Defeating hackers</h2>
+            <p>Hackers are pretty smart, and if they get a chance they can access your cookies and local storage.
+                So as a measure of leaked access or refresh token refresh token rotation strategy is adopted.
+            </p>
+
+            <h4 class="mt-4">If access token is compromised:</h4>
+            <p>Hacker with access token can only access your application for just the lifespan of the token which is
+                set to 5 minutes. After 5 minutes the old access token can not te used as authentication measure.
+                The server generates a new access token and with the new access token the refresh token is also rotated!
+            </p>
+
+            <h4 class="mt-4">If refresh token is compromised:</h4>
+            <p>Refresh token is only used for generating access token and does not play a role in authentication
+                process.
+                Even if the hacker tries to generate a new access token using the refresh token he/she, will need the
+                access token too!</p>
+
+            <h4 class="mt-4">If both access and refresh token is compromised:</h4>
+            <p>If hacker gets access to both of your access and refresh token they can easily access protected routes
+                that they shouldn&#39;t see. And to counter this kind of security breech we can easily unauthenticate
+                every refresh token in the user array and thus stopping the hacker to access the protected routes.
+            </p>
+
+            <h2 class="mb-3 mt-4">How to Use the Project?</h2>
+            <p>
+                <strong>Step - 1</strong> Clone the project using
+                <code>git -clone https://github.com/srijitasd/JWT-refresh-rotation.git</code>.
+            </p>
+            <p>
+                <strong>Step - 2</strong> Open command prompt in the project directory and run <code>npm install</code>
+                to install all the dependencies required to run the project.
+            </p>
+            <p>
+                <strong>Step - 3</strong> In the command prompt run <code>npm run dev</code> to start the development
+                server.
+            </p>
+            <p>
+                <strong>Step - 4</strong> In the command prompt start the local mongoDB server.
+            </p>
+            <p>
+                <strong>Step - 5</strong> Create a new database with name <code>JWT</code> and import the posts.json 
+                file present in <code>src/db</code> directory. 
+            </p>
+            <p>
+                <strong>Step - 6</strong> Open your browser and visit <code>localhost:3000/</code>. That's it!
+            </p>
+
         </div>
     </div>
 </div>
