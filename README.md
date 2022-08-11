@@ -23,7 +23,7 @@ Access token has **maxAge** of only `5 minutes`. If a user requests using an exp
 JWT authentication with refresh token rotation is not a new thing in the market.There are ample resources to guide you through the setup, but every other demonstration is either without database integration or they do not show how to consume the tokens in the front-end. <br/>
 Some demonstrations does not use rotation strategy at all!
 
-some do not show the usage of refresh token - some do use refresh token but not refresh token rotation - some
+some do not show the usage of refresh token - some do use refresh token but not refresh token rotation - some does not ue refesh token at all!
 
 ## Why JWT? :point_up:
 
